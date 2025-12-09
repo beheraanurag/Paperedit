@@ -15,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(401).json({ error: 'Unauthorized' })
     }
 
-    const userList = await db.select().from(users).where(eq(users.id, authUser.id)).limit(1)
+    const userList = db.select().from(users).where(eq(users.id, authUser.id)).limit(1).all()
     if (userList.length === 0) {
       return res.status(404).json({ error: 'User not found' })
     }

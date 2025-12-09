@@ -16,16 +16,26 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/lib/*": [
+        "app/lib/*"
+      ],
+      "@/api/*": [
+        "app/api/*"
+      ]
+    }
   },
   "include": [
-    "app/lib/**/*"
+    "app/lib/**/*",
+    "server.ts",
+    "app/api/**/*"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "build",
-    "app/frontend",
-    "app/api"
+    "app/frontend"
   ]
 }

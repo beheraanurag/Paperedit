@@ -8,20 +8,31 @@
     "app/api"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=app/frontend",
+    "dev": "concurrently -n \"API,FRONTEND\" -c \"blue,green\" \"npm run dev:api\" \"npm run dev:frontend\"",
+    "dev:api": "tsx watch server.ts",
+    "dev:frontend": "npm run dev --workspace=app/frontend",
     "build": "npm run build --workspace=app/frontend",
     "start": "npm run start --workspace=app/frontend",
-    "lint": "npm run lint --workspace=app/frontend"
+    "lint": "npm run lint --workspace=app/frontend",
+    "seed": "tsx scripts/seed.ts"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "concurrently": "^9.2.1",
+    "dotenv": "^16.3.1",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@vercel/node": "^5.5.15",
+    "cors": "^2.8.5",
     "drizzle-orm": "^0.45.0",
+    "express": "^4.18.2",
     "nanoid": "^5.1.6"
   }
 }

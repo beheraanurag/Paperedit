@@ -22,7 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { email, password, name } = registerSchema.parse(req.body)
 
     // Check if user exists
-    const existingUser = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    const existingUser = db.select().from(users).where(eq(users.email, email)).limit(1).all()
     if (existingUser.length > 0) {
       return res.status(409).json({ error: 'User already exists' })
     }
@@ -40,7 +40,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       role: 'user' as const,
     }
 
-    await db.insert(users).values(user)
+    db.insert(users).values(user).run()
 
     // Generate token
     const token = jwt.sign(

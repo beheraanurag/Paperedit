@@ -20,7 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { email, password } = loginSchema.parse(req.body)
 
     // Find user
-    const userList = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    const userList = db.select().from(users).where(eq(users.email, email)).limit(1).all()
     if (userList.length === 0) {
       return res.status(401).json({ error: 'Invalid credentials' })
     }

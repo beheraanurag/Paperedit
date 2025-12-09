@@ -1,6 +1,5 @@
 {
   "buildCommand": "cd app/frontend && npm run build",
-  "devCommand": "cd app/frontend && npm run dev",
   "installCommand": "npm install",
   "framework": null,
   "functions": {

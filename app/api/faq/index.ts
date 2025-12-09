@@ -8,7 +8,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const faqsList = await db.select().from(faqs)
+    const faqsList = db.select().from(faqs).all()
     return res.status(200).json({
       success: true,
       data: faqsList,

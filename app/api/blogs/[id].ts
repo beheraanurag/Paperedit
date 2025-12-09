@@ -15,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Blog ID is required' })
     }
 
-    const blogList = await db.select().from(blogs).where(eq(blogs.id, id)).limit(1)
+    const blogList = db.select().from(blogs).where(eq(blogs.id, id)).limit(1).all()
 
     if (blogList.length === 0) {
       return res.status(404).json({ error: 'Blog not found' })
