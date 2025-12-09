@@ -1,0 +1,50 @@
+{
+  "mcp": {
+    "providers": [
+      {
+        "name": "filesystem",
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-filesystem"],
+        "cwd": "."
+      },
+      {
+        "name": "drizzle-sql",
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-sql"],
+        "env": {
+          "DATABASE_URL": "YOUR_DATABASE_URL_HERE"
+        }
+      },
+      {
+        "name": "git",
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-git"]
+      },
+      {
+        "name": "vercel-env",
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-env"],
+        "env": {
+          "VERCEL_TOKEN": "YOUR_VERCEL_TOKEN"
+        }
+      },
+      {
+        "name": "backend-api",
+        "command": "node",
+        "args": ["./backend/mcp-server.js"],
+        "cwd": "./backend",
+        "env": {
+          "PORT": "9090"
+        }
+      },
+      {
+        "name": "shadcn",
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-command"],
+        "env": {
+          "CMD": "npx shadcn-ui add"
+        }
+      }
+    ]
+  }
+}
